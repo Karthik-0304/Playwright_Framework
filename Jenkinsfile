@@ -1,4 +1,4 @@
-pipeline{
+pipeline {
     agent any
 
     parameters {
@@ -8,12 +8,13 @@ pipeline{
             description: "Select the environment"
         )
     }
+
     stages {
 
-        stage("Checkout"){
-            steps{
+        stage("Checkout") {
+            steps {
                 git branch: "main",
-            url: "https://github.com/Karthik-0304/Playwright_Framework.git"
+                    url: "https://github.com/Karthik-0304/Playwright_Framework.git"
             }
         }
 
@@ -23,9 +24,10 @@ pipeline{
             }
         }
 
-        stage("Install Playwright Browsers") {
+        stage("Check Environment") {
             steps {
-                bat "npx playwright install chromium"
+                bat "echo ENV=%ENV%"
+                bat "echo BASE_URL=%BASE_URL%"
             }
         }
 
