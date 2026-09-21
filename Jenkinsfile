@@ -9,6 +9,11 @@ pipeline {
         )
     }
 
+    environment {
+        BASE_URL = "https://www.saucedemo.com"
+        CI = "true"
+    }
+
     stages {
 
         stage("Checkout") {
