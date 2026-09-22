@@ -16,13 +16,6 @@ pipeline {
 
     stages {
 
-        stage("Checkout") {
-            steps {
-                git branch: "main",
-                    url: "https://github.com/Karthik-0304/Playwright_Framework.git"
-            }
-        }
-
         stage("Install Dependencies") {
             steps {
                 bat "npm ci"
@@ -39,6 +32,14 @@ pipeline {
         stage("Run Playwright Tests") {
             steps {
                 bat "npx playwright test"
+            }
+        }
+
+        stage("Publish Allure Report") {
+            steps {
+                allure([
+                    results: [[path: "allure-results"]]
+                ])
             }
         }
     }
