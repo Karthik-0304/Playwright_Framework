@@ -43,4 +43,11 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'test-results/**/*',
+                allowEmptyArchive: true
+        }
+    }
 }
